@@ -3,3 +3,6 @@ longhorn:
     defaultDataPath: /var/lib/longhorn
     defaultDataLocality: best-effort
     replicaAutoBalance: best-effort
+
+  preUpgradeCheck:
+    enabled: false
