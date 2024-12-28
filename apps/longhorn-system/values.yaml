@@ -5,4 +5,4 @@ longhorn:
     replicaAutoBalance: best-effort
 
   preUpgradeCheck:
-    enabled: false
+    jobEnabled: false
