@@ -4,5 +4,5 @@ longhorn:
     defaultDataLocality: best-effort
     replicaAutoBalance: best-effort
 
-  preUpgradeCheck:
+  preUpgradeChecker:
     jobEnabled: false
