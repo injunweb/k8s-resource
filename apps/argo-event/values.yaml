@@ -1,0 +1,5 @@
+argo-events:
+  eventBus:
+    enabled: true
+  sensors:
+    enabled: true
