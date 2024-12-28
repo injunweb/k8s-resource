@@ -1,0 +1,12 @@
+argo-cd:
+  configs:
+    params:
+      server.insecure: true
+
+  server:
+    extraArgs:
+      - --insecure
+    ingress:
+      enabled: false
+    ingressGrpc:
+      enabled: false

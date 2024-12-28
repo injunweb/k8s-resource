@@ -1,0 +1,9 @@
+harbor:
+  expose:
+    type: ingress
+    ingress:
+      hosts:
+        core: harbor.example.com
+  persistence:
+    enabled: true
+  externalURL: https://harbor.example.com

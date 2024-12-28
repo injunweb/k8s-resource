@@ -1,0 +1,7 @@
+argo-workflows:
+  server:
+    enabled: true
+    ingress:
+      enabled: true
+      hosts:
+        - workflow.example.com
