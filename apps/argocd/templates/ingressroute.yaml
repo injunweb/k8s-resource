@@ -9,13 +9,13 @@ spec:
     - intwebsec
   routes:
     - kind: Rule
-      match: Host(`argocd.injunweb`)
+      match: Host(`argocd.injunweb.com`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
     - kind: Rule
-      match: Host(`argocd.injunweb`) && Header(`Content-Type`, `application/grpc`)
+      match: Host(`argocd.injunweb.com`) && Header(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server
