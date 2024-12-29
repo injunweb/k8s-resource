@@ -1,7 +1,5 @@
 vault:
   server:
-    dev:
-      enabled: false
     ha:
       enabled: true
   ui:
