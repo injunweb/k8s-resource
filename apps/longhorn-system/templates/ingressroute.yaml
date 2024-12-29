@@ -9,7 +9,7 @@ spec:
     - intwebsec
   routes:
     - kind: Rule
-      match: Host(`longhorn.injunweb`)
+      match: Host(`longhorn.injunweb.com`)
       services:
         - name: longhorn-frontend
           port: 80

@@ -68,7 +68,7 @@ traefik:
       enabled: true
       annotations: {}
       labels: {}
-      matchRule: Host(`traefik.injunweb`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      matchRule: Host(`traefik.injunweb.com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       services:
         - name: api@internal
           kind: TraefikService
