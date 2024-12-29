@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  entryPoints:
+    - intweb
+    - intwebsec
+  routes:
+    - match: Host(`harbor.injunweb.com`)
+      kind: Rule
+      services:
+        - name: harbor-harbor-portal
+          namespace: harbor
+          port: 80
+    - match: Host(`harbor.injunweb.com`) && PathPrefix(`/api/`, `/service/`, `/v2/`, `/chartrepo/`, `/c/`)
+      kind: Rule
+      services:
+        - name: harbor-harbor-core
+          namespace: harbor
+          port: 80
+    - match: Host(`harbor.injunweb.com`)
+      kind: Rule
+      services:
+        - name: harbor-harbor-notary-server
+          namespace: harbor
+          port: 4443

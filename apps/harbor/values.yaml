@@ -1,9 +1,8 @@
 harbor:
   expose:
-    type: ingress
-    ingress:
-      hosts:
-        core: harbor.example.com
+    type: ClusterIP
+
   persistence:
     enabled: true
-  externalURL: https://harbor.example.com
+
+  externalURL: "https://harbor.injunweb.com"
