@@ -2,5 +2,5 @@ vault:
   server:
     ha:
       enabled: true
-  ui:
-    enabled: true
+  # ui:
+  #   enabled: true
