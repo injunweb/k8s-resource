@@ -9,7 +9,7 @@ spec:
     - intwebsec
   routes:
     - kind: Rule
-      match: Host(`vault.injunweb`)
+      match: Host(`vault.injunweb.com`)
       services:
         - name: vault-ui
           port: 8200
