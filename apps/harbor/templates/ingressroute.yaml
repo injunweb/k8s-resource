@@ -8,13 +8,13 @@ spec:
     - intweb
     - intwebsec
   routes:
-    - match: Host(`harbor.injunweb.com`)
+    - match: Host(`harbor.injunweb.com`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: harbor-portal
           namespace: harbor
           port: 80
-    - match: Host(`harbor.injunweb.com`) && PathPrefix(`/api/`, `/service/`, `/v2/`, `/chartrepo/`, `/c/`)
+    - match: Host(`harbor.injunweb.com`) && (PathPrefix(`/api`) || PathPrefix(`/service`) || PathPrefix(`/v2`) || PathPrefix(`/chartrepo`) || PathPrefix(`/c`))
       kind: Rule
       services:
         - name: harbor-core
