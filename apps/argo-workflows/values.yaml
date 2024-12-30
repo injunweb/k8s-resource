@@ -1,5 +1,4 @@
 argo-workflows:
   server:
-    ingress:
-      enabled: false
-    authMode: "server"
+    extraArgs:
+      - --auth-mode=server
