@@ -1,4 +1,1 @@
-argo-events:
-  webhook:
-    enabled: true
-    port: 80
+
