@@ -1,5 +1,4 @@
 argo-events:
-  eventBus:
+  webhook:
     enabled: true
-  sensors:
-    enabled: true
+    port: 80
