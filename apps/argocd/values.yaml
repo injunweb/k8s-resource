@@ -6,20 +6,16 @@ argo-cd:
       create: true
       plugins:
         argocd-vault-plugin-helm:
-          init:
-            command: [sh]
-            args: [-c, 'echo "Initializing vault plugin..."']
           discover:
             find:
               command:
-                [
-                  sh,
-                  -c,
-                  "find . -name 'Chart.yaml' && find . -name 'values.yaml'",
-                ]
+                - sh
+                - "-c"
+                - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
           generate:
-            command: [sh, -c]
-            args:
+            command:
+              - sh
+              - "-c"
               - |
                 helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
                 argocd-vault-plugin generate -s argocd:argocd-vault-plugin-credentials -
@@ -39,13 +35,8 @@ argo-cd:
           name: argocd-cmp-cm
       - name: custom-tools
         emptyDir: {}
-      - name: plugins-tmp
+      - name: tmp
         emptyDir: {}
-      - name: var-files
-        emptyDir: {}
-      - name: plugin-config
-        configMap:
-          name: argocd-cmp-plugin
 
     initContainers:
       - name: download-tools
@@ -75,9 +66,17 @@ argo-cd:
           - mountPath: /var/run/argocd
             name: var-files
           - mountPath: /tmp
-            name: plugins-tmp
-          - name: custom-tools
-            mountPath: /usr/local/bin/argocd-vault-plugin
-            subPath: argocd-vault-plugin
-          - name: plugin-config
-            mountPath: /home/argocd/cmp-server/config
+            name: tmp
+            #
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: argocd-vault-plugin-helm.yaml
+            name: argocd-cmp-cm
+          - mountPath: /usr/local/bin/argocd-vault-plugin
+            name: argocd-vault-plugin
+          # - name: custom-tools
+          #   mountPath: /usr/local/bin/argocd-vault-plugin
+          #   subPath: argocd-vault-plugin
+          # - name: plugin-config
+          #   mountPath: /home/argocd/cmp-server/config
