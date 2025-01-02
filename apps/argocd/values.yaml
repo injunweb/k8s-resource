@@ -38,6 +38,10 @@ argo-cd:
         emptyDir: {}
       - name: tmp
         emptyDir: {}
+      - name: var-files
+        emptyDir: {}
+      - name: plugins
+        emptyDir: {}
 
     initContainers:
       - name: download-tools
@@ -71,8 +75,8 @@ argo-cd:
           - mountPath: /home/argocd/cmp-server/plugins
             name: plugins
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: argocd-vault-plugin-helm.yaml
             name: argocd-cmp-cm
+            subPath: plugin.yaml
           - name: custom-tools
             mountPath: /usr/local/bin/argocd-vault-plugin
             subPath: argocd-vault-plugin
