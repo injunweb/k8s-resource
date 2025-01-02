@@ -21,3 +21,27 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: project-apps-root
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/injunweb/gitops-repo.git
+#     targetRevision: HEAD
+#     path: .
+#     directory:
+#       recurse: false
+#       include: "applicationset.yaml"
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: argocd
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
