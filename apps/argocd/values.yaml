@@ -59,7 +59,7 @@ argo-cd:
       - name: argocd-vault-plugin-helm
         command:
           - "/var/run/argocd/argocd-cmp-server"
-        image: quay.io/argoproj/argocd:v2.8.4
+        image: quay.io/argoproj/argocd:v2.13.2
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
