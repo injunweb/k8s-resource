@@ -36,8 +36,13 @@ argo-cd:
           name: argocd-cmp-cm
       - name: custom-tools
         emptyDir: {}
-      - name: tmp
+      - name: plugins-tmp
         emptyDir: {}
+      - name: var-files
+        emptyDir: {}
+      - name: plugin-config
+        configMap:
+          name: argocd-cmp-plugin
 
     initContainers:
       - name: download-tools
@@ -67,12 +72,9 @@ argo-cd:
           - mountPath: /var/run/argocd
             name: var-files
           - mountPath: /tmp
-            name: tmp
-          - mountPath: /home/argocd/cmp-server/plugins
-            name: plugins
-          # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          #   subPath: argocd-vault-plugin-helm.yaml
-          #   name: argocd-cmp-cm
+            name: plugins-tmp
           - name: custom-tools
             mountPath: /usr/local/bin/argocd-vault-plugin
             subPath: argocd-vault-plugin
+          - name: plugin-config
+            mountPath: /home/argocd/cmp-server/config
