@@ -38,10 +38,6 @@ argo-cd:
         emptyDir: {}
       - name: tmp
         emptyDir: {}
-      - name: var-files
-        emptyDir: {}
-      - name: plugins
-        emptyDir: {}
 
     initContainers:
       - name: download-tools
@@ -62,7 +58,7 @@ argo-cd:
     extraContainers:
       - name: argocd-vault-plugin-helm
         command:
-          - /var/run/argocd/argocd-cmp-server
+          - "/var/run/argocd/argocd-cmp-server"
         image: quay.io/argoproj/argocd:v2.8.4
         securityContext:
           runAsNonRoot: true
@@ -75,8 +71,8 @@ argo-cd:
           - mountPath: /home/argocd/cmp-server/plugins
             name: plugins
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: argocd-vault-plugin-helm.yaml
             name: argocd-cmp-cm
-            subPath: plugin.yaml
           - name: custom-tools
             mountPath: /usr/local/bin/argocd-vault-plugin
             subPath: argocd-vault-plugin
