@@ -70,9 +70,9 @@ argo-cd:
             name: tmp
           - mountPath: /home/argocd/cmp-server/plugins
             name: plugins
-          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: argocd-vault-plugin-helm.yaml
-            name: argocd-cmp-cm
+          # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          #   subPath: argocd-vault-plugin-helm.yaml
+          #   name: argocd-cmp-cm
           - name: custom-tools
             mountPath: /usr/local/bin/argocd-vault-plugin
             subPath: argocd-vault-plugin
