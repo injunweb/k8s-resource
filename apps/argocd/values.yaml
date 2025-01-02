@@ -2,6 +2,24 @@ argo-cd:
   configs:
     params:
       server.insecure: true
+    cmp:
+      create: true
+      annotations: {}
+      plugins:
+        - argocd-vault-plugin-helm:
+            discover:
+              find:
+                command:
+                  - sh
+                  - "-c"
+                  - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+            generate:
+              command:
+                - sh
+                - "-c"
+                - |
+                  helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE $ARGOCD_ENV_HELM_ARGS} |
+                  argocd-vault-plugin generate -s argocd:argocd-vault-plugin-credentials -
 
   server:
     extraArgs:
@@ -10,25 +28,6 @@ argo-cd:
       enabled: false
     ingressGrpc:
       enabled: false
-
-  cmp:
-    create: true
-    annotations: {}
-    plugins:
-      - argocd-vault-plugin-helm:
-          discover:
-            find:
-              command:
-                - sh
-                - "-c"
-                - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-          generate:
-            command:
-              - sh
-              - "-c"
-              - |
-                helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE $ARGOCD_ENV_HELM_ARGS} |
-                argocd-vault-plugin generate -s argocd:argocd-vault-plugin-credentials -
 
   repoServer:
     volumes:
