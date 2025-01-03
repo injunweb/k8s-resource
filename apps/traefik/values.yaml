@@ -84,11 +84,13 @@ traefik:
     enabled: true
     single: true
     type: LoadBalancer
-    loadBalancerIP: "192.168.0.201"
+    externalIPs:
+      - "192.168.0.201"
     additionalServices:
       internal:
         type: LoadBalancer
-        loadBalancerIP: "192.168.0.200"
+        externalIPs:
+          - "192.168.0.200"
         labels:
           traefik-service-type: internal
 
