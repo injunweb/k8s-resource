@@ -84,13 +84,13 @@ traefik:
     enabled: true
     single: true
     type: LoadBalancer
-    externalIPs:
-      - "192.168.0.201"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: 192.168.0.201
     additionalServices:
       internal:
         type: LoadBalancer
-        externalIPs:
-          - "192.168.0.200"
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: 192.168.0.200
         labels:
           traefik-service-type: internal
 
