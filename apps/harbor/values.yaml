@@ -9,4 +9,4 @@ harbor:
 
   externalURL: "https://harbor.injunweb.com"
 
-  harborAdminPassword: "123123"
+  harborAdminPassword: "<path:argocd/harbor#harborAdminPassword>"
