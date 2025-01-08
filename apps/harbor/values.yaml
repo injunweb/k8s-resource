@@ -8,3 +8,5 @@ harbor:
     enabled: true
 
   externalURL: "https://harbor.injunweb.com"
+
+  harborAdminPassword: "123123"
