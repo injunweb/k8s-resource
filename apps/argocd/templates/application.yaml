@@ -30,7 +30,7 @@ spec:
 # spec:
 #   project: default
 #   source:
-#     repoURL: https://github.com/injunweb/project-gitops.git
+#     repoURL: https://github.com/injunweb/projects-gitops.git
 #     targetRevision: HEAD
 #     path: .
 #     directory:
