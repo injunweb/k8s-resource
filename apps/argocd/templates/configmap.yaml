@@ -25,9 +25,9 @@ data:
             helm dependency build
       generate:
         command:
-          - bash
+          - sh
           - "-c"
           - |
-            helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE -f $ARGOCD_ENV_HELM_FILE_PATH -f <(echo "$ARGOCD_ENV_HELM_VALUES") . |
+            helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
             argocd-vault-plugin generate -s argocd:argocd-vault-plugin-credentials -
       lockRepo: false
