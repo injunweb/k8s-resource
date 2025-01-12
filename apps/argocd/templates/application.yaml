@@ -1,41 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: infra-apps-root
+  name: app-of-apps
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/injunweb/k8s-resource.git
+    repoURL: https://github.com/injunweb/app-of-apps.git
     targetRevision: HEAD
     path: .
-    directory:
-      recurse: false
-      include: "applicationset.yaml"
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: project-apps-root
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/injunweb/projects-gitops.git
-    targetRevision: HEAD
-    path: .
-    directory:
-      recurse: false
-      include: "applicationset.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
