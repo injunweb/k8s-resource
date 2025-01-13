@@ -1,8 +1,6 @@
 harbor:
   expose:
     type: ClusterIP
-    tls:
-      enabled: false
 
   persistence:
     enabled: true
