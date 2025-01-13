@@ -4,9 +4,6 @@ harbor:
     tls:
       enabled: false
 
-  persistence:
-    enabled: true
-
   externalURL: "https://harbor.injunweb.com:443"
 
   harborAdminPassword: "<path:argocd/data/harbor#harborAdminPassword>"
