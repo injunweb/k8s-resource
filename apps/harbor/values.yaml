@@ -7,7 +7,7 @@ harbor:
   persistence:
     enabled: true
 
-  externalURL: "https://harbor.injunweb.com"
+  externalURL: "https://harbor.injunweb.com:443"
 
   harborAdminPassword: "<path:argocd/data/harbor#harborAdminPassword>"
 
