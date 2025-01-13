@@ -10,3 +10,6 @@ harbor:
   externalURL: "https://harbor.injunweb.com"
 
   harborAdminPassword: "<path:argocd/data/harbor#harborAdminPassword>"
+
+  registry:
+    relativeurls: true
