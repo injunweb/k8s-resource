@@ -40,7 +40,6 @@ kube-prometheus-stack:
       storageSpec:
         volumeClaimTemplate:
           spec:
-            storageClassName: standard
             resources:
               requests:
                 storage: 20Gi
