@@ -23,6 +23,10 @@ kube-prometheus-stack:
       auth.anonymous:
         enabled: true
         org_role: Admin
+    additionalDataSources:
+      - name: Loki
+        type: loki
+        url: http://loki-stack.loki-stack.svc.cluster.local:3100
 
   prometheus:
     enabled: true
