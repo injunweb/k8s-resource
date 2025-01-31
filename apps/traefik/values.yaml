@@ -45,9 +45,6 @@ traefik:
       tls:
         enabled: true
         certResolver: "letsencrypt"
-      transport:
-        respondingTimeouts:
-          readTimeout: 1800
     intweb:
       port: 8001
       expose:
@@ -65,6 +62,9 @@ traefik:
       tls:
         enabled: true
         certResolver: "letsencrypt"
+      transport:
+        respondingTimeouts:
+          readTimeout: 1800
 
   ingressRoute:
     dashboard:
