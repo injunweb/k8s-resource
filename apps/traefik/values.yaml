@@ -52,6 +52,9 @@ traefik:
         internal: true
       exposedPort: 80
       protocol: TCP
+      transport:
+        respondingTimeouts:
+          readTimeout: 1800
     intwebsec:
       port: 8444
       expose:
