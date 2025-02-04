@@ -10,3 +10,5 @@ harbor:
 
   registry:
     relativeurls: true
+    upload_purging:
+      age: 24h
