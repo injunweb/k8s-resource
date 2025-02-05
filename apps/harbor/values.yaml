@@ -12,3 +12,8 @@ harbor:
     relativeurls: true
     upload_purging:
       age: 24h
+
+  persistence:
+  persistentVolumeClaim:
+    registry:
+      size: 10Gi
