@@ -14,6 +14,6 @@ harbor:
       age: 24h
 
   persistence:
-  persistentVolumeClaim:
-    registry:
-      size: 10Gi
+    persistentVolumeClaim:
+      registry:
+        size: 10Gi
