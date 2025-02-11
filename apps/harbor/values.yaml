@@ -11,7 +11,8 @@ harbor:
   registry:
     relativeurls: true
     upload_purging:
-      age: 24h
+      age: 12h
+      interval: 12h
 
   persistence:
     persistentVolumeClaim:
