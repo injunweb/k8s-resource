@@ -35,7 +35,7 @@ spec:
     - intwebsec
   routes:
     - kind: Rule
-      match: Host(`argocd.injunweb.com`) && Path(`/api/webhook`)
+      match: Host(`argocdwebhook.injunweb.com`) && Path(`/api/webhook`)
       services:
         - name: argocd-server
           port: 80
