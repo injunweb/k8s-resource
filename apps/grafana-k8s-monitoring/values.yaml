@@ -75,8 +75,18 @@ k8s-monitoring:
         enabled: true
         port: 9411
   autoInstrumentation:
-    enabled: false
-    # enabled: true
+    enabled: true
+    beyla:
+      namespaces:
+        exclude:
+          - kube-system
+          - kube-public
+          - kube-node-lease
+          - argocd
+          - vault
+          - traefik
+          - longhorn-system
+          - harbor
   profiling:
     enabled: true
   alloy-metrics:
