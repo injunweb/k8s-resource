@@ -75,16 +75,8 @@ k8s-monitoring:
         enabled: true
         port: 9411
   autoInstrumentation:
-    enabled: true
-    beyla:
-      config:
-        otel_traces_export:
-          otlp:
-            send_timeout: 30s
-            sending_queue:
-              enabled: true
-              queue_size: 5000
-              num_consumers: 20
+    enabled: false
+    # enabled: true
   profiling:
     enabled: true
   alloy-metrics:
