@@ -76,6 +76,10 @@ k8s-monitoring:
         port: 9411
   autoInstrumentation:
     enabled: true
+    beyla:
+      namespaces:
+        include:
+          - argocd
   profiling:
     enabled: true
   alloy-metrics:
