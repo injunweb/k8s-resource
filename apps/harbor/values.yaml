@@ -6,7 +6,8 @@ harbor:
 
   externalURL: "https://harbor.injunweb.com:443"
 
-  harborAdminPassword: "<path:argocd/data/harbor#harborAdminPassword>"
+  existingSecretAdminPassword: harbor-admin-credentials
+  existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
 
   registry:
     relativeurls: true
