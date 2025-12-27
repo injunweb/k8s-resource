@@ -63,6 +63,8 @@ k8s-monitoring:
           defaultClusterId: my-cluster
         prometheus:
           existingSecretName: grafana-monitoring-credentials
+          username_key: metricsUsername
+          password_key: apiKey
           external:
             url: https://prometheus-prod-49-prod-ap-northeast-0.grafana.net./api/prom
     kepler:
