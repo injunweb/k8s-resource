@@ -62,7 +62,7 @@ k8s-monitoring:
         exporter:
           defaultClusterId: my-cluster
         prometheus:
-          existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
+          existingSecretName: grafana-monitoring-credentials
           external:
             url: https://prometheus-prod-49-prod-ap-northeast-0.grafana.net./api/prom
     kepler:
