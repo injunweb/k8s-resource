@@ -18,8 +18,8 @@ metadata:
   namespace: gateway
 spec:
   blocks:
-    - start: "10.0.203.101"
-      stop: "10.0.203.102"
+    - start: {{ .Values.ippool.start | quote }}
+      stop: {{ .Values.ippool.stop | quote }}
   serviceSelector:
     matchLabels:
       "io.kubernetes.service.namespace": "gateway"
