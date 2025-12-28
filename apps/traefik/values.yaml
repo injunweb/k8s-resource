@@ -114,6 +114,8 @@ traefik:
     kubernetesIngress:
       enabled: true
       allowExternalNameServices: true
+    kubernetesGateway:
+      enabled: true
 
   additionalArguments:
     - "--log.level=INFO"
