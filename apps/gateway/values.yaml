@@ -1,0 +1,14 @@
+clusterIssuer:
+  name: letsencrypt-prod
+  email: injuninjune@gmail.com
+
+certificate:
+  secretName: wildcard-injunweb-tls
+  dnsNames:
+    - "*.injunweb.com"
+    - "injunweb.com"
+    - "*.injun.dev"
+    - "injun.dev"
+
+cloudflare:
+  vaultPath: system/gateway/cloudflare-api-token
