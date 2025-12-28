@@ -6,6 +6,10 @@ internal:
   enabled: true
   ip: "10.0.203.102"
 
+ippool:
+  start: "10.0.203.101"
+  stop: "10.0.203.102"
+
 certificate:
   dnsNames:
     - "*.injunweb.com"
