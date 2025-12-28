@@ -4,9 +4,9 @@ metadata:
   name: wildcard-injunweb-tls
   namespace: gateway
 spec:
-  secretName: {{ .Values.certificate.secretName }}
+  secretName: wildcard-injunweb-tls
   issuerRef:
-    name: {{ .Values.clusterIssuer.name }}
+    name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
     {{- range .Values.certificate.dnsNames }}

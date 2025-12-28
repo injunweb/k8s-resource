@@ -1,12 +1,14 @@
+{{- if .Values.internal.enabled }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: internal-gateway
   namespace: gateway
-  annotations:
-    metallb.universe.tf/loadBalancerIPs: 192.168.0.200
 spec:
-  gatewayClassName: traefik
+  gatewayClassName: cilium
+  infrastructure:
+    annotations:
+      io.cilium/lb-ipam-ips: {{ .Values.internal.ip }}
   listeners:
   - name: http
     port: 80
@@ -23,4 +25,5 @@ spec:
     tls:
       mode: Terminate
       certificateRefs:
-        - name: {{ .Values.certificate.secretName }}
+        - name: wildcard-injunweb-tls
+{{- end }}
