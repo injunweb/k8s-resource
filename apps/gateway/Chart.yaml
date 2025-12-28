@@ -1,0 +1,6 @@
+apiVersion: v2
+name: gateway
+description: Kubernetes Gateway API configuration for injunweb infrastructure
+type: application
+version: 1.0.0
+appVersion: "v1.0.0"
