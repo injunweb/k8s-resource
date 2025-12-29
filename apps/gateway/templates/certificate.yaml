@@ -7,7 +7,7 @@ spec:
   secretName: wildcard-injunweb-tls
   issuerRef:
     name: letsencrypt-prod
-    kind: ClusterIssuer
+    kind: Issuer
   dnsNames:
     {{- range .Values.certificate.dnsNames }}
     - {{ . | quote }}

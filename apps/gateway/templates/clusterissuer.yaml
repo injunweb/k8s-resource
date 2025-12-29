@@ -1,7 +1,8 @@
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
   name: letsencrypt-prod
+  namespace: gateway
 spec:
   acme:
     email: {{ .Values.clusterIssuer.email }}
@@ -14,4 +15,3 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-token
               key: api-token
-              namespace: gateway
