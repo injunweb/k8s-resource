@@ -57,8 +57,7 @@ data:
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>404 - 페이지를 찾을 수 없습니다</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <title>404 - Page Not Found</title>
         <style>
             * {
                 margin: 0;
@@ -67,9 +66,9 @@ data:
             }
             html, body {
                 height: 100%;
-                background-color: #0d1117;
-                color: #e6edf3;
-                font-family: 'Inter', sans-serif;
+                background-color: #ffffff;
+                color: #000000;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             }
             body {
                 display: flex;
@@ -79,53 +78,68 @@ data:
                 text-align: center;
                 padding: 2rem;
             }
-            .logo {
-                font-size: 2.5rem;
-                font-weight: 700;
-                color: #FFFFFF;
-                margin-bottom: 1rem;
-                letter-spacing: -0.02em;
+            .container {
+                max-width: 600px;
             }
             .error-code {
-                font-size: 8rem;
-                font-weight: 800;
-                background: linear-gradient(135deg, #9650FA 0%, #B98CFF 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                margin-bottom: 1rem;
+                font-size: 6rem;
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1.5rem;
+                color: #000000;
+            }
+            .divider {
+                width: 60px;
+                height: 1px;
+                background-color: #000000;
+                margin: 0 auto 1.5rem;
             }
             .error-message {
-                font-size: 1.5rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
+                font-size: 1.25rem;
+                font-weight: 400;
+                margin-bottom: 1rem;
+                color: #000000;
             }
             .error-description {
-                font-size: 1rem;
-                color: #7d8590;
-                max-width: 500px;
+                font-size: 0.95rem;
+                color: #666666;
                 line-height: 1.6;
+                margin-bottom: 2rem;
+            }
+            .home-link {
+                display: inline-block;
+                padding: 0.75rem 2rem;
+                border: 1px solid #000000;
+                color: #000000;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 400;
+                transition: all 0.2s ease;
+            }
+            .home-link:hover {
+                background-color: #000000;
+                color: #ffffff;
             }
             @media (max-width: 768px) {
                 .error-code {
-                    font-size: 5rem;
-                }
-                .logo {
-                    font-size: 2rem;
+                    font-size: 4rem;
                 }
                 .error-message {
-                    font-size: 1.25rem;
+                    font-size: 1.1rem;
                 }
             }
         </style>
     </head>
     <body>
-    <div class="logo">injunweb</div>
-    <div class="error-code">404</div>
-    <div class="error-message">서비스를 찾을 수 없습니다</div>
-    <div class="error-description">
-        요청하신 서비스가 존재하지 않거나 아직 배포되지 않았습니다.<br>
-        서비스 상태를 확인 후 다시 시도해주세요.
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="divider"></div>
+        <div class="error-message">Page Not Found</div>
+        <div class="error-description">
+            The page you are looking for might have been removed,<br>
+            had its name changed, or is temporarily unavailable.
+        </div>
+        <a href="/" class="home-link">Go to Homepage</a>
     </div>
     </body>
     </html>
