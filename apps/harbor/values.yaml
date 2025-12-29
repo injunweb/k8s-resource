@@ -19,3 +19,6 @@ harbor:
     persistentVolumeClaim:
       registry:
         size: 15Gi
+
+  updateStrategy:
+    type: Recreate
