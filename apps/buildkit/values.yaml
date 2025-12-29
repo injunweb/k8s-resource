@@ -1,0 +1,40 @@
+image:
+  repository: moby/buildkit
+  tag: v0.25.2
+  pullPolicy: IfNotPresent
+
+replicas: 1
+
+deployment:
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+service:
+  type: ClusterIP
+  port: 1234
+
+buildkit:
+  debug: false
+  rootDir: /var/lib/buildkit
+  extraArgs:
+    - --oci-worker-gc=true
+    - --oci-worker-gc-keepstorage=3000,5000,25000
+
+storage:
+  pvc:
+    enabled: true
+    storageClass: longhorn
+    size: 30Gi
+
+podSecurityContext: {}
+
+securityContext:
+  privileged: true
+
+resources: {}
+
+serviceAccount:
+  create: true
+  name: buildkit
+  annotations: {}
