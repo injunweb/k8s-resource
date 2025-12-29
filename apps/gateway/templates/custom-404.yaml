@@ -104,21 +104,6 @@ data:
                 font-size: 0.95rem;
                 color: #666666;
                 line-height: 1.6;
-                margin-bottom: 2rem;
-            }
-            .home-link {
-                display: inline-block;
-                padding: 0.75rem 2rem;
-                border: 1px solid #000000;
-                color: #000000;
-                text-decoration: none;
-                font-size: 0.9rem;
-                font-weight: 400;
-                transition: all 0.2s ease;
-            }
-            .home-link:hover {
-                background-color: #000000;
-                color: #ffffff;
             }
             @media (max-width: 768px) {
                 .error-code {
@@ -139,7 +124,6 @@ data:
             The page you are looking for might have been removed,<br>
             had its name changed, or is temporarily unavailable.
         </div>
-        <a href="/" class="home-link">Go to Homepage</a>
     </div>
     </body>
     </html>
