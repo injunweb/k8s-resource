@@ -1,0 +1,172 @@
+{{- if .Values.custom404.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-404-page
+  namespace: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-404-page
+  template:
+    metadata:
+      labels:
+        app: custom-404-page
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-content
+          mountPath: /usr/share/nginx/html
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: html-content
+        configMap:
+          name: custom-404-html
+      - name: nginx-config
+        configMap:
+          name: custom-404-nginx-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: custom-404-service
+  namespace: gateway
+spec:
+  selector:
+    app: custom-404-page
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-404-html
+  namespace: gateway
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>404 - 페이지를 찾을 수 없습니다</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html, body {
+                height: 100%;
+                background-color: #0d1117;
+                color: #e6edf3;
+                font-family: 'Inter', sans-serif;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 2rem;
+            }
+            .logo {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #FFFFFF;
+                margin-bottom: 1rem;
+                letter-spacing: -0.02em;
+            }
+            .error-code {
+                font-size: 8rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #9650FA 0%, #B98CFF 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 1rem;
+            }
+            .error-message {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            .error-description {
+                font-size: 1rem;
+                color: #7d8590;
+                max-width: 500px;
+                line-height: 1.6;
+            }
+            @media (max-width: 768px) {
+                .error-code {
+                    font-size: 5rem;
+                }
+                .logo {
+                    font-size: 2rem;
+                }
+                .error-message {
+                    font-size: 1.25rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+    <div class="logo">injunweb</div>
+    <div class="error-code">404</div>
+    <div class="error-message">서비스를 찾을 수 없습니다</div>
+    <div class="error-description">
+        요청하신 서비스가 존재하지 않거나 아직 배포되지 않았습니다.<br>
+        서비스 상태를 확인 후 다시 시도해주세요.
+    </div>
+    </body>
+    </html>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-404-nginx-config
+  namespace: gateway
+data:
+  default.conf: |
+    server {
+        listen 80;
+        server_name _;
+        root /usr/share/nginx/html;
+        index index.html;
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+        error_page 404 /index.html;
+    }
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: custom-404-route
+  namespace: gateway
+spec:
+  parentRefs:
+  - name: external-gateway
+    namespace: gateway
+  {{- if .Values.internal.enabled }}
+  - name: internal-gateway
+    namespace: gateway
+  {{- end }}
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: "/"
+    backendRefs:
+    - name: custom-404-service
+      port: 80
+{{- end }}

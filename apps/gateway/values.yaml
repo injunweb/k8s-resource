@@ -19,3 +19,6 @@ certificate:
 
 clusterIssuer:
   email: me@injun.dev
+
+custom404:
+  enabled: true
