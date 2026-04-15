@@ -3,6 +3,20 @@ argo-cd:
     params:
       server.disable.auth: true
       server.insecure: true
+    cm:
+      # Workaround for Gateway API webhook injecting default group/kind/weight values causing OutOfSync
+      # https://github.com/argoproj/argo-cd/issues/22151
+      resource.customizations.ignoreDifferences.gateway.networking.k8s.io_HTTPRoute: |
+        jqPathExpressions:
+          - '.spec.parentRefs[]?.group'
+          - '.spec.parentRefs[]?.kind'
+          - '.spec.rules[].backendRefs[]?.group'
+          - '.spec.rules[].backendRefs[]?.kind'
+          - '.spec.rules[].backendRefs[]?.weight'
+      resource.customizations.ignoreDifferences.gateway.networking.k8s.io_Gateway: |
+        jqPathExpressions:
+          - '.spec.listeners[]?.tls?.certificateRefs[]?.group'
+          - '.spec.listeners[]?.tls?.certificateRefs[]?.kind'
   server:
     extraArgs:
       - --insecure
