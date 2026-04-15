@@ -13,6 +13,7 @@ argo-cd:
           - '.spec.rules[].backendRefs[]?.group'
           - '.spec.rules[].backendRefs[]?.kind'
           - '.spec.rules[].backendRefs[]?.weight'
+          - '.spec.rules[].matches[].headers[]?.type'
       resource.customizations.ignoreDifferences.gateway.networking.k8s.io_Gateway: |
         jqPathExpressions:
           - '.spec.listeners[]?.tls?.certificateRefs[]?.group'

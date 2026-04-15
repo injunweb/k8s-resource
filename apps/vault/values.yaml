@@ -1,6 +1,11 @@
 vault:
   server:
     enabled: true
+    statefulSet:
+      # Explicitly set to avoid OutOfSync from k8s 1.27+ adding default values
+      persistentVolumeClaimRetentionPolicy:
+        whenDeleted: Retain
+        whenScaled: Retain
     readinessProbe:
       enabled: true
       path: "/v1/sys/health?standbyok=true&perfstandbyok=true&sealedcode=204&uninitcode=204"
