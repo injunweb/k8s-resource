@@ -27,6 +27,7 @@ spec:
             value: /
         - headers:
             - name: Content-Type
+              type: Exact
               value: application/grpc
       backendRefs:
         - name: argocd-server
