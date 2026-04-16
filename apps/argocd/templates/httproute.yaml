@@ -25,7 +25,10 @@ spec:
         - path:
             type: PathPrefix
             value: /
-        - headers:
+        - path:
+            type: PathPrefix
+            value: /
+          headers:
             - name: Content-Type
               type: Exact
               value: application/grpc
